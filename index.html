@@ -3,103 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人网页</title>
+    <title>我的个人网站</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-size: 18px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav h1 {
+            color: #667eea;
+            font-size: 32px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        /* 主容器 */
         .container {
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 60px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        h1 {
-            color: #667eea;
-            margin-top: 0;
-            font-size: 2.5em;
-        }
-        
+        /* 标题样式 */
         h2 {
-            color: #764ba2;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            color: #667eea;
+            font-size: 36px;
+            margin: 40px 0 20px 0;
+            border-bottom: 4px solid #764ba2;
+            padding-bottom: 15px;
         }
         
+        h3 {
+            color: #764ba2;
+            font-size: 28px;
+            margin: 30px 0 15px 0;
+        }
+        
+        /* 段落样式 */
         p {
             line-height: 1.8;
             color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
         }
         
+        /* 欢迎区域 */
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            color: #666;
+        }
+        
+        /* 技能卡片 */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* 项目卡片 */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .project-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-card h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        /* 按钮样式 */
         .button {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 30px;
+            padding: 16px 40px;
             text-decoration: none;
-            border-radius: 25px;
-            margin-top: 20px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 10px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
         }
         
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .skill-item {
-            background: #f7f7f7;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .skill-item:hover {
-            transform: scale(1.05);
-            background: #667eea;
+        /* 联系方式 */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+            border-bottom: 3px solid white;
+        }
+        
+        .contact p {
+            color: white;
+            font-size: 20px;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 导航栏 -->
+    <nav>
+        <h1>我的网站</h1>
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主要内容 -->
     <div class="container">
-        <h1>👋 欢迎来到我的网页</h1>
-        
-        <h2>关于我</h2>
-        <p>
-            你好！这是我的个人网页。我对网页开发充满热情，喜欢创建美观实用的网站。
-            这个页面是用HTML和CSS制作的，你可以根据自己的需要自由修改内容和样式。
-        </p>
-        
-        <h2>我的技能</h2>
-        <div class="skills">
-            <div class="skill-item">HTML</div>
-            <div class="skill-item">CSS</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">设计</div>
+        <!-- 欢迎区域 -->
+        <div class="hero" id="home">
+            <h1>👋 你好，我是 [你的名字]</h1>
+            <p>欢迎来到我的个人网站</p>
         </div>
         
-        <h2>我的项目</h2>
-        <p>
-            我正在不断学习和创建新的项目。欢迎探索我的作品集，了解我的最新进展。
-        </p>
+        <!-- 关于我 -->
+        <section id="about">
+            <h2>关于我</h2>
+            <p>
+                我是一名充满热情的开发者/设计师/创作者。我喜欢创造有趣且实用的东西，
+                并且不断学习新技术。这个网站展示了我的作品、技能和经历。
+            </p>
+            <p>
+                在这里你可以了解我正在做的项目，我掌握的技能，以及如何联系我。
+                如果你对我的工作感兴趣，欢迎随时与我交流！
+            </p>
+        </section>
         
-        <a href="#" class="button">联系我</a>
+        <!-- 我的技能 -->
+        <section id="skills">
+            <h2>我的技能</h2>
+            <div class="skills">
+                <div class="skill-item">💻 HTML/CSS</div>
+                <div class="skill-item">⚡ JavaScript</div>
+                <div class="skill-item">🎨 UI设计</div>
+                <div class="skill-item">📱 响应式设计</div>
+                <div class="skill-item">🚀 Web开发</div>
+                <div class="skill-item">🎯 问题解决</div>
+            </div>
+        </section>
+        
+        <!-- 我的项目 -->
+        <section id="projects">
+            <h2>我的项目</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>🌟 项目一</h3>
+                    <p>这是我的第一个项目，使用HTML和CSS创建了一个漂亮的网页。</p>
+                    <a href="#" class="button">查看详情</a>
+                </div>
+                <div class="project-card">
+                    <h3>🎯 项目二</h3>
+                    <p>一个交互式的网页应用，展示了我的JavaScript技能。</p>
+                    <a href="#" class="button">查看详情</a>
+                </div>
+                <div class="project-card">
+                    <h3>🚀 项目三</h3>
+                    <p>正在开发中的新项目，敬请期待更多精彩内容！</p>
+                    <a href="#" class="button">查看详情</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 联系我 -->
+        <section id="contact" class="contact">
+            <h2>联系我</h2>
+            <p>📧 邮箱: your.email@example.com</p>
+            <p>📱 GitHub: github.com/你的用户名</p>
+            <p>💼 LinkedIn: linkedin.com/in/你的名字</p>
+            <a href="mailto:your.email@example.com" class="button" style="background: white; color: #667eea;">发送邮件</a>
+        </section>
     </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 [你的名字] | 用 ❤️ 制作</p>
+    </footer>
 </body>
 </html>

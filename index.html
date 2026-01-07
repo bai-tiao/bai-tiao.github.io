@@ -232,10 +232,15 @@
         <h1>我的网站</h1>
         <ul>
             <a href="about.html">关于我</a>            
-            <li><a href="#about">关于</a></li>
             <li><a href="#skills">技能</a></li>
-            <li><a href="#projects">项目</a></li>
-            <li><a href="#contact">联系</a></li>
+            <a href="projects.html" class="button">查看项目</a>            
+            <button onclick="navigateTo('contact.html')">联系我</button>
+            
+            <script>
+            function navigateTo(url) {
+                window.location.href = url;
+            }
+            </script>        
         </ul>
     </nav>
     

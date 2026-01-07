@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 我的个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        nav h1 {
+            color: #667eea;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        nav a.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* 主容器 */
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题 */
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title h1 {
+            color: #667eea;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* 联系方式网格 */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        /* 联系方式卡片 */
+        .contact-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .contact-card .icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            font-size: 18px;
+            opacity: 0.95;
+            word-break: break-word;
+        }
+        
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            transition: border-color 0.3s;
+        }
+        
+        .contact-card a:hover {
+            border-bottom-color: white;
+        }
+        
+        /* 社交媒体区域 */
+        .social-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .social-section h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            border: 2px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .social-btn .emoji {
+            font-size: 24px;
+        }
+        
+        /* 联系表单 */
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .contact-form h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* 提示信息 */
+        .form-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            color: #856404;
+        }
+        
+        .form-note strong {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* 返回按钮 */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+        
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 36px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <h1>🌟 我的网站</h1>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于我</a></li>
+            <li><a href="projects.html">项目展示</a></li>
+            <li><a href="contact.html" class="active">联系方式</a></li>
+            <li><a href="https://github.com/你的用户名" target="_blank">GitHub 🔗</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-title">
+            <h1>📧 联系我</h1>
+            <p>欢迎通过以下方式与我取得联系</p>
+            <p>我很乐意与你交流和合作！</p>
+        </div>
+        
+        <!-- 联系方式卡片 -->
+        <div class="contact-grid">
+            <!-- 邮箱 -->
+            <div class="contact-card" onclick="window.location.href='mailto:24320105@hdu.edu.cn'">
+                <div class="icon">📧</div>
+                <h3>电子邮件</h3>
+                <p><a href="mailto:your.email@example.com">24320105@hdu.edu.cn</a></p>
+            </div>
+            
+            <!-- 电话 -->
+            <div class="contact-card" onclick="window.location.href='tel:+1234567890'">
+                <div class="icon">📱</div>
+                <h3>电话</h3>
+                <p><a href="tel:+1234567890">+123 456 7890</a></p>
+            </div>
+            
+            <!-- 地址 -->
+            <div class="contact-card">
+                <div class="icon">📍</div>
+                <h3>位置</h3>
+                <p>中国，北京市<br>朝阳区</p>
+            </div>
+        </div>
+        
+        <!-- 社交媒体 -->
+        <div class="social-section">
+            <h2>🌐 社交媒体</h2>
+            <div class="social-links">
+                <a href="https://github.com/bai-tiao" target="_blank" class="social-btn">
+                    <span class="emoji">💻</span>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/nothng" target="_blank" class="social-btn">
+                    <span class="emoji">💼</span>
+                    LinkedIn
+                </a>
+                <a href="https://twitter.com/nothing" target="_blank" class="social-btn">
+                    <span class="emoji">🐦</span>
+                    Twitter
+                </a>
+                <a href="https://weibo.com/nothing" target="_blank" class="social-btn">
+                    <span class="emoji">📱</span>
+                    微博
+                </a>
+                <a href="https://instagram.com/nothing" target="_blank" class="social-btn">
+                    <span class="emoji">📷</span>
+                    Instagram
+                </a>
+            </div>
+        </div>
+        
+        <!-- 联系表单 -->
+        <div class="contact-form">
+            <h2>✉️ 发送消息</h2>
+            <form id="contactForm" onsubmit="return handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">姓名 *</label>
+                    <input type="text" id="name" name="name" required placeholder="请输入你的姓名">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">邮箱 *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">主题</label>
+                    <input type="text" id="subject" name="subject" placeholder="邮件主题">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">消息 *</label>
+                    <textarea id="message" name="message" required placeholder="请输入你想说的话..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">📤 发送消息</button>
+            </form>
+            
+            <div class="form-note">
+                <strong>💡 提示：</strong>
+                这是一个演示表单。由于这是静态网站，表单暂时不能真正发送邮件。
+                你可以直接通过上方的邮箱地址联系我，或者集成 Formspree、EmailJS 等服务来实现表单功能。
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button">← 返回首页</a>
+            <a href="about.html" class="back-button" style="margin-left: 15px;">关于我</a>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 bai-tiai&Claude | 用 ❤️ 制作</p>
+        <p style="margin-top: 10px;">
+            <a href="index.html">首页</a> |
+            <a href="about.html">关于</a> |
+            <a href="projects.html">项目</a> |
+            <a href="contact.html">联系</a>
+        </p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // 表单提交处理（演示用）
+        function handleSubmit(event) {
+            event.preventDefault(); // 阻止表单默认提交
+            
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // 显示提示信息
+            alert(`感谢你的消息，${name}！\n\n由于这是演示网站，消息暂时无法发送。\n请直接通过邮箱联系我：your.email@example.com`);
+            
+            // 清空表单
+            document.getElementById('contactForm').reset();
+            
+            return false;
+        }
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

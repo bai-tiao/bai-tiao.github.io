@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目展示 - 我的个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        nav h1 {
+            color: #667eea;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        nav a.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* 主容器 */
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题 */
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title h1 {
+            color: #667eea;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* 项目网格 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin: 40px 0;
+        }
+        
+        /* 项目卡片 */
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        /* 项目图片区域 */
+        .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+        
+        /* 项目内容区域 */
+        .project-content {
+            padding: 30px;
+        }
+        
+        .project-content h3 {
+            color: #667eea;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        
+        .project-content p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* 技术标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* 项目链接 */
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .project-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .project-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .project-btn.secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        /* 返回按钮 */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 40px;
+            transition: transform 0.3s;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+        
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 36px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <h1>🌟 我的网站</h1>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于我</a></li>
+            <li><a href="projects.html" class="active">项目展示</a></li>
+            <li><a href="contact.html">联系方式</a></li>
+            <li><a href="https://github.com/你的用户名" target="_blank">GitHub 🔗</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-title">
+            <h1>💼 我的项目</h1>
+            <p>这里展示了我完成的一些项目和作品</p>
+        </div>
+        
+        <!-- 项目展示网格 -->
+        <div class="projects-grid">
+            <!-- 项目1 -->
+            <div class="project-card">
+                <div class="project-image">🌐</div>
+                <div class="project-content">
+                    <h3>个人网站</h3>
+                    <p>使用 HTML、CSS 和 JavaScript 构建的响应式个人网站，展示个人信息和项目作品集。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://你的用户名.github.io" target="_blank" class="project-btn">
+                            查看网站
+                        </a>
+                        <a href="https://github.com/你的用户名/你的用户名.github.io" target="_blank" class="project-btn secondary">
+                            源代码
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目2 -->
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-content">
+                    <h3>待办事项应用</h3>
+                    <p>一个简洁实用的待办清单应用，支持添加、删除和标记完成任务，数据保存在本地。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">LocalStorage</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-btn">查看演示</a>
+                        <a href="#" class="project-btn secondary">源代码</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目3 -->
+            <div class="project-card">
+                <div class="project-image">🎮</div>
+                <div class="project-content">
+                    <h3>网页小游戏</h3>
+                    <p>一个有趣的互动小游戏，使用纯 JavaScript 实现，包含动画效果和计分系统。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Canvas</span>
+                        <span class="tag">动画</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-btn">开始游戏</a>
+                        <a href="#" class="project-btn secondary">源代码</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目4 -->
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <h3>UI 设计作品</h3>
+                    <p>精心设计的用户界面作品集，包含移动应用和网页设计，注重用户体验和视觉效果。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Figma</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Prototyping</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-btn">查看作品</a>
+                        <a href="#" class="project-btn secondary">设计稿</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目5 -->
+            <div class="project-card">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>数据可视化仪表板</h3>
+                    <p>交互式数据可视化项目，使用图表展示数据趋势，支持实时更新和筛选功能。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Chart.js</span>
+                        <span class="tag">React</span>
+                        <span class="tag">API</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-btn">查看演示</a>
+                        <a href="#" class="project-btn secondary">源代码</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目6 - 进行中的项目 -->
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3>新项目开发中...</h3>
+                    <p>正在开发一个令人兴奋的新项目，敬请期待！将会带来更多创新功能和更好的用户体验。</p>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">进行中</span>
+                        <span class="tag">2026</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-btn" style="background: #ccc; cursor: not-allowed;">
+                            即将推出
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="index.html" class="back-button">← 返回首页</a>
+            <a href="contact.html" class="back-button" style="margin-left: 15px;">联系我 →</a>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 [你的名字] | 用 ❤️ 制作</p>
+        <p style="margin-top: 10px;">
+            <a href="index.html">首页</a> |
+            <a href="about.html">关于</a> |
+            <a href="projects.html">项目</a> |
+            <a href="contact.html">联系</a>
+        </p>
+    </footer>
+</body>
+</html>
